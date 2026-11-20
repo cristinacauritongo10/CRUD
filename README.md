@@ -1,59 +1,63 @@
-# Crud
+# Inventario de ropa y accesorios
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.29.
+Aplicación web desarrollada con Angular y Firebase para la práctica 02.2.
+Permite administrar un inventario de ropa y accesorios. Los datos se guardan
+en Cloud Firestore y se conservan al recargar la página.
 
-## Development server
+**Aplicación en Vercel:** https://crud-swart-nu.vercel.app/ 
 
-To start a local development server, run:
+## Funcionalidades
 
-```bash
-ng serve
-```
+- **Crear:** registrar un producto desde el formulario.
+- **Leer:** consultar los productos de Firestore y mostrarlos en una tabla.
+- **Actualizar:** editar un producto y guardar los cambios con el mismo ID.
+- **Eliminar:** borrar un producto después de confirmar. Si se cancela, el producto permanece en la tabla.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+El formulario exige un nombre y una categoría, un precio numérico mayor o igual
+a cero y un stock entero mayor o igual a cero.
 
-## Code scaffolding
+## Modelo del producto
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+| Campo | Tipo | Descripción |
+| --- | --- | --- |
+| `id` | `string` | Identificador del documento en Firestore. |
+| `nombre` | `string` | Nombre del producto. |
+| `categoria` | `string` | Categoría del producto, por ejemplo Ropa o Accesorios. |
+| `precio` | `number` | Precio en dólares. |
+| `stock` | `number` | Cantidad de unidades disponibles. |
 
-```bash
-ng generate component component-name
-```
+Los documentos se guardan en la colección `productos`. El servicio
+`ProductoService` realiza las operaciones con Firestore.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Configuración de Firebase
 
-```bash
-ng generate --help
-```
+1. Crea o selecciona un proyecto en Firebase Console.
+2. Registra una aplicación web y habilita Cloud Firestore.
+3. Copia el objeto `firebaseConfig` de tu aplicación web en
+   `src/app/firebase.config.ts`.
+4. Configura las reglas de Firestore para permitir las operaciones de la práctica
+   sobre la colección `productos` durante la revisión.
 
-## Building
+## Instalación y ejecución local
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+Abre la carpeta que contiene `package.json` y `angular.json`, y ejecuta:
 
 ```bash
-ng e2e
+npm install
+npx ng serve
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Abre [http://localhost:4200](http://localhost:4200).
 
-## Additional Resources
+Para generar la compilación de producción:
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```bash
+npm run build
+```
+
+## Cómo comprobar el CRUD
+
+1. Crea `Cinturón negro de prueba`, categoría `Accesorios`, precio `12.50` y stock `8`. Recarga y comprueba que aparece en la tabla.
+2. Edita el stock a `10`. Recarga y comprueba que el cambio se conserva.
+3. Pulsa **Eliminar** y cancela. Comprueba que el producto sigue en la tabla.
+4. Vuelve a pulsar **Eliminar**, confirma y recarga. El producto debe desaparecer.
