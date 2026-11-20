@@ -1,0 +1,45 @@
+:host {
+  display: block;
+  color: #17372e;
+  font: 1rem/1.5 system-ui, sans-serif;
+}
+
+main { max-width: 900px; margin: 24px auto; padding: 0 16px; }
+
+section {
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px solid #ceded5;
+  border-radius: 12px;
+}
+
+fieldset { margin: 0; padding: 0; border: 0; }
+label { display: block; margin-top: 10px; font-weight: 600; }
+
+input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 360px;
+  padding: 8px;
+  border: 1px solid #a9bdb3;
+  border-radius: 6px;
+  font: inherit;
+}
+
+button {
+  margin: 8px 6px 0 0;
+  padding: 7px 12px;
+  border: 1px solid #21634e;
+  border-radius: 6px;
+  background: #edf6f1;
+  color: #17372e;
+  cursor: pointer;
+}
+
+button:disabled { opacity: 0.55; cursor: default; }
+.tabla { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 10px; border-bottom: 1px solid #ceded5; text-align: left; }
+thead { background: #edf6f1; }
+.error { color: #9d2626; }
